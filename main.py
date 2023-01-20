@@ -26,8 +26,16 @@ def delete_user(user_id: int):
     database = app.state.db
     cursor = database.cursor()
     cursor.execute("""
-    UPDATE users SET is_delete=true WHERE user_id=%s""", (user_id, ))
+    UPDATE users SET is_delete=true WHERE user_id=%s""", (user_id,))
     database.commit()
     return {"msg": "User has been deleted"}
 
-    
+
+def create_app():
+    db = psycopg2.connect(DATABASE_URL)
+    app.state.db = db
+    return app
+
+
+if __name__ == "__main__":
+    uvicorn.run(create_app())
