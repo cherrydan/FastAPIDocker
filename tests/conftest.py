@@ -35,7 +35,7 @@ def clean_tables(test_client):
     test_client.app.state.db.commit()
 
 
-def create_test_user_in_db(username: str, db_connection, is_deleted: bool = False, user_id: int=None) -> int:
+def create_test_user_in_db(username: str, db_connection, is_deleted: bool = False, user_id: int = None) -> int:
     cursor = db_connection.cursor()
     if user_id is None:
         cursor.execute(CREATE_USER_QUERY_COMMON, (username, is_deleted))
@@ -46,10 +46,5 @@ def create_test_user_in_db(username: str, db_connection, is_deleted: bool = Fals
 
 def get_user_from_db_by_id(user_id: int, db_connection):
     cursor = db_connection.cursor()
-    cursor.execute(GET_USER_BY_ID_QUERY, (user_id, ))
+    cursor.execute(GET_USER_BY_ID_QUERY, (user_id,))
     return cursor.fetchone()
-
-
-
-
-
