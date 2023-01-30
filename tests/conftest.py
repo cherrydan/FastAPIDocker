@@ -40,7 +40,7 @@ def create_test_user_in_db(username: str, db_connection, is_deleted: bool = Fals
     if user_id is None:
         cursor.execute(CREATE_USER_QUERY_COMMON, (username, is_deleted))
     else:
-        cursor.execute(CREATE_USER_QUERY_COMMON, (user_id, username, is_deleted))
+        cursor.execute(CREATE_USER_QUERY, (user_id, username, is_deleted))
     return cursor.fetchone()[0]
 
 
