@@ -17,7 +17,7 @@ SELECT * FROM users WHERE user_id = %s;
 
 
 @pytest.fixture(scope="session", autouse=True)
-def create_database_and_run_migrations():
+def run_migrations():
     print("Running migrations...")
     os.system(f"yoyo apply --database {DATABASE_URL} ./migrations -b")
 
